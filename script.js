@@ -4,7 +4,8 @@ let playerPoints = 0
 let computerPoints = 0
 const choices = ["ROCK", "PAPER", "SCISSORS"]
 const rounds = 5
-let roundWinner = ""
+let resultMessage = ""
+
 
 function getComputerChoice(){
 
@@ -14,11 +15,13 @@ function getComputerChoice(){
 
 function playRound(playerSelection, computerSelection){
 
+
     if ((playerSelection == "ROCK" && computerSelection == "SCISSORS") || 
         (playerSelection == "SCISSORS" && computerSelection == "PAPER") || 
         (playerSelection == "PAPER" && computerSelection == "ROCK")){
             playerPoints++
-            roundWinner = "Player"
+            resultMessage = "Player wins the round!";
+
 
     }
 
@@ -26,14 +29,21 @@ function playRound(playerSelection, computerSelection){
         (computerSelection == "SCISSORS" && playerSelection == "PAPER") ||
         (computerSelection == "PAPER" && playerSelection == "ROCK")){
             computerPoints++
-            roundWinner = "Computer"
+            resultMessage = "Computer wins the round!";
     }
 
     if (playerSelection == computerSelection){
-        roundWinner = "Tie"
+        resultMessage = "It's a tie!";
     } 
+
+    updateRoundResult(resultMessage);
 }
 
+function updateRoundResult(message){
+    const resultDisplay = document.getElementById('currentResult');
+    resultDisplay.innerText = message;
+
+}
 
 function isGameOver(){
 

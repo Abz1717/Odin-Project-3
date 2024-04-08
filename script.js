@@ -7,12 +7,14 @@ const rounds = 5
 let resultMessage = ""
 
 
+// computer choice 
 function getComputerChoice(){
 
     return choices[Math.floor(Math.random()*3)]
 }
 
 
+// playing one round
 function playRound(playerSelection, computerSelection){
 
 
@@ -39,23 +41,27 @@ function playRound(playerSelection, computerSelection){
     updateRoundResult(resultMessage);
 }
 
+//function to display round result
 function updateRoundResult(message){
     const resultDisplay = document.getElementById('currentResult');
     resultDisplay.innerText = message;
 
 }
 
+
 function isGameOver(){
 
     return (playerPoints + computerPoints >= rounds);
 }
 
+// score tally
 function updateCurrentScore(){
 
     const scoreDisplay = document.getElementById('current-score');
     scoreDisplay.innerText = `Score: Player ${playerPoints} - Computer ${computerPoints}`;
 }
 
+// final result
 function updateFinalScore(){
 
     let finalMessage;
@@ -69,11 +75,14 @@ function updateFinalScore(){
     alert(finalMessage);
 }
 
+// restart game function
 function restartGame(){
     playerPoints = 0
-    computerPoints = 0 
+    computerPoints = 0
+    let resultMessage = "" 
 }
 
+// highlight computers choice 
 function highlightComputerChoice(computerSelection) {
 
      document.querySelectorAll('#computer-choices button').forEach(button => {

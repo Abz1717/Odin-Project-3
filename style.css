@@ -21,6 +21,38 @@ html {
 }
 
 .highlight {
-    background-color: lightblue; 
+    border: 2px solid red
 }
+
+.score-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 100px;
+    margin-bottom: 20px;
+
+}
+
+.choices-container {
+    display: flex;  /*enables Flexbox for the container */
+    justify-content: center; /*centers  flex items horizontally */
+    align-items: center;  /*centers the flex items vertically if needed */
+    gap: 20px; /*space between the player and computer choices */
+}
+
+#player-choices, #computer-choices {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.score-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
 

@@ -5,7 +5,7 @@
         <title>RPS</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet"  href="style.css">
     </head>
     <body>
 
@@ -14,21 +14,30 @@
                 <Source src="" type=""> </src>
             </video>
         </div>
-   
-        <div id = "player-choices">
-            <button id = "player-rock">Rock</button>
-            <button id = "player-paper">Paper</button>
-            <button id = "player-scissors">Scissors</button>
+
+        <div class="score-container">
+            <div id="current-score">Score: Player 0 - Computer 0</div>
         </div>
-        <div id="computer-choices">
-            <button id="computer-rock">Rock</button>
-            <button id="computer-paper">Paper</button>
-            <button id="computer-scissors">Scissors</button>
+
+        <div class="choices-container">
+            <div id = "player-choices">
+                <button id = "player-rock">Rock</button>
+                <button id = "player-paper">Paper</button>
+                <button id = "player-scissors">Scissors</button>
+            </div>
+            <div id="computer-choices">
+                <button id="computer-rock">Rock</button>
+                <button id="computer-paper">Paper</button>
+                <button id="computer-scissors">Scissors</button>
+            </div>
         </div>
-        <div id="current-score">Score: Player 0 - Computer 0</div>
+
+        <div class ="score-container">
+            <div id="currentResult"> </div>
+        </div>
 
 
-        <div id="currentResult"> </div>
+
 
         <script src="script.js" async defer></script>
     </body>

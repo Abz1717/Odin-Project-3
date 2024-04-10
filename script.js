@@ -5,6 +5,7 @@ let computerPoints = 0
 const choices = ["ROCK", "PAPER", "SCISSORS"]
 const rounds = 5
 let resultMessage = ""
+let RoundPoints = 0
 
 
 // computer choice 
@@ -22,6 +23,7 @@ function playRound(playerSelection, computerSelection){
         (playerSelection == "SCISSORS" && computerSelection == "PAPER") || 
         (playerSelection == "PAPER" && computerSelection == "ROCK")){
             playerPoints++
+            RoundPoints++
             resultMessage = "Player wins the round!";
 
 
@@ -31,11 +33,12 @@ function playRound(playerSelection, computerSelection){
         (computerSelection == "SCISSORS" && playerSelection == "PAPER") ||
         (computerSelection == "PAPER" && playerSelection == "ROCK")){
             computerPoints++
+            RoundPoints++
             resultMessage = "Computer wins the round!";
     }
 
     if (playerSelection == computerSelection){
-        resultMessage = "It's a tie!";
+        resultMessage = "It's a tie, try again!";
     } 
 
     updateRoundResult(resultMessage);
@@ -44,7 +47,11 @@ function playRound(playerSelection, computerSelection){
 //function to display round result
 function updateRoundResult(message){
     const resultDisplay = document.getElementById('currentResult');
-    resultDisplay.innerText = message;
+    const messageParagraph = document.createElement('p');
+
+    messageParagraph.innerText = message;
+    resultDisplay.appendChild(messageParagraph);
+
 
 }
 
@@ -61,6 +68,11 @@ function updateCurrentScore(){
     scoreDisplay.innerText = `Score: Player ${playerPoints} - Computer ${computerPoints}`;
 }
 
+function updateRound(){
+    const RoundDisplay = document.getElementById('current-round');
+    RoundDisplay.innerText = `Round : ${RoundPoints}`
+}
+
 // final result
 function updateFinalScore(){
 
@@ -72,14 +84,32 @@ function updateFinalScore(){
     } else {
         finalMessage = `Game Over! It's a tie: ${playerPoints} to ${computerPoints}.`;
     }
-    alert(finalMessage);
+
+    const finalMessageDisplay = document.getElementById('currentResult');
+    const messageParagraph = document.createElement('p');
+
+    messageParagraph.innerText = finalMessage;
+    finalMessageDisplay.appendChild(messageParagraph);
+
+
 }
+
+document.getElementById('restartBtn').addEventListener('click', restartGame);
 
 // restart game function
 function restartGame(){
-    playerPoints = 0
-    computerPoints = 0
-    let resultMessage = "" 
+    playerPoints = 0;
+    computerPoints = 0;
+    RoundPoints = 0; 
+    resultMessage = "Who will win?";
+
+    updateCurrentScore();
+    updateRound();
+    
+    const resultDisplay = document.getElementById('currentResult');
+    resultDisplay.innerHTML = ''; 
+
+    document.querySelectorAll("#player-choices button").forEach(button => button.disabled = false);
 }
 
 // highlight computers choice 
@@ -100,16 +130,37 @@ function highlightComputerChoice(computerSelection) {
 }
 
 
+function highlightPlayerChoice(playerSelection) {
+
+    document.querySelectorAll('#player-choices button').forEach(button => {
+       button.classList.remove('highlight');
+   });
+
+   const buttonId = `player-${computerSelection.toLowerCase()}`;
+   const selectedButton = document.getElementById(buttonId);
+   
+   if (selectedButton) {
+       selectedButton.classList.add('highlight');
+   } else {
+       console.log(`Button with ID ${buttonId} not found.`);
+   }
+}
 
 document.addEventListener("click", gameSelectionListener);
 
 function gameSelectionListener(event){
 
+    if (isGameOver()) {
+        console.log("Game is over. Please restart to play again.");
+        document.querySelectorAll("#player-choices button").forEach(button => button.disabled = true);
+        return; 
+    }
     if (event.target.matches("#player-choices button")) { 
         const playerSelection = event.target.id.replace('player-', '').toUpperCase();
         playerClick(playerSelection);
         if (isGameOver()) {
             updateFinalScore();
+
         }
     }
 }
@@ -120,4 +171,6 @@ function playerClick(playerSelection){
     playRound(playerSelection, computerSelection);
     highlightComputerChoice(computerSelection);
     updateCurrentScore();
+    updateRound();
+
 }

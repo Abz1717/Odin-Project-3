@@ -6,6 +6,7 @@ html {
 
 .body{
     margin: 0;
+
 }
 
 .backgroundContainer{
@@ -21,9 +22,27 @@ html {
 }
 
 .highlight {
-    border: 2px solid red
+    border: 2px solid red;
 }
 
+.heading-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 100px;
+    margin-bottom: 20px;
+
+}
+
+#heading{
+    font-size: 2em;
+    text-align: center;
+    color: black;
+    margin: 0.5em 1em 1.5em 1em;
+    font-family: "kamishirasawa";
+    text-shadow: 0 0 0.8em rgb(255, 255, 255);
+}
 .score-container{
     display: flex;
     justify-content: center;
@@ -33,6 +52,7 @@ html {
     margin-bottom: 20px;
 
 }
+
 
 .choices-container {
     display: flex;  /*enables Flexbox for the container */
@@ -48,6 +68,11 @@ html {
 
 }
 
+#computer-rock, #computer-paper, #computer-scissors{
+    background-color: rgb(222, 176, 176);
+
+}
+
 .score-container{
     display: flex;
     justify-content: center;
@@ -56,3 +81,30 @@ html {
 }
 
 
+
+.rounds-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#current-round{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.controls{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+#restart{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

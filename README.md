@@ -1,2 +1,2 @@
-# RockPaperScissors
-Project
+# Odins Project #3
+RockPaperScissors Project
